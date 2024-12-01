@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Nova+Mono&display=swap"
+        rel="stylesheet"> <!-- Kantumruy Pro Font from GoogleFonts -->
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="header"> <!-- Component used everywhere -->
+        <img src="" alt="Logo"> <!-- Using some sort of eventhandler to change the page into the home page. -->
+        <div class="projectInfo">
+            <p class="projectInfo increasing-hover">About </p>
+            <!-- When pressed, creates a dialouge prompt explaining the details of the project -->
+            <a id="" gitHubBtn href="https://github.com/Zyrel-Arandia/F1Dashboard">
+                <svg class="increasing-hover" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                    viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="feather feather-github">
+                    <path
+                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                    </path>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <article id="homeBody">
+        <h1>F1 DASHBOARD PROJECT</h1>
+        <div class="seasonSelectBox">
+            <select>
+                <option value="" disabled selected>Select Season</option>
+            </select>
+            <input type="button" value="Search">
+        </div>
+    </article>
+</body>
+
+</html>

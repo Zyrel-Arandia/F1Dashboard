@@ -1,0 +1,97 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "Kantumruy Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#header {
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    justify-content: space-between;
+    height: 65px;
+    color: white;
+}
+
+.projectInfo {
+    display: flex;
+    flex-direction: row;
+    width: 10%;
+    /* background-color: blue; */
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 7%;
+}
+
+p.projectInfo {
+    font-size: 32px;
+    font-weight: 400;
+    padding: 10px;
+}
+
+article#homeBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    flex: 1;
+}
+
+#homeBody h1 {
+    margin-top: 250px;
+    font-size: 90px;
+}
+
+
+#homeBody select {
+    position: relative;
+    appearance: none;
+    padding: 10px;
+    width: 500px;
+    border-radius: 15px;
+    border: black 2px solid;
+    background-color: white;
+    cursor: pointer;
+    font-size: 20px;
+
+    /* Adding custom down arrow to the select element */
+    background-image: url('../icons/chevron-down.svg');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 12px 12px;
+}
+
+#homeBody select::after {
+    content: '\25BC';
+    position: absolute;
+    right: 15px;
+    pointer-events: none;
+}
+
+#homeBody input{
+    position: relative;
+    appearance: none;
+    padding: 10px;
+    width: 90px;
+    border-radius: 15px;
+    border: black 2px solid;
+    background-color: white;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* For elements that want to increase in size when being hovered over */
+.increasing-hover {
+    cursor: pointer;
+    transition: scale 0.5s;
+}
+
+.increasing-hover:hover {
+    scale: 110%;
+}
