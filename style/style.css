@@ -30,12 +30,19 @@ body {
 }
 
 p.projectInfo {
-    font-size: 32px;
+    font-size: 27px;
     font-weight: 400;
     padding: 10px;
 }
 
-article#homeBody {
+.projectInfo dialog {
+    position: relative;
+    right: 10px;
+    top: 80px;
+    
+}
+
+.homeBody {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,13 +50,13 @@ article#homeBody {
     flex: 1;
 }
 
-#homeBody h1 {
+.homeBody h1 {
     margin-top: 250px;
     font-size: 90px;
 }
 
 
-#homeBody select {
+.homeBody select {
     position: relative;
     appearance: none;
     padding: 10px;
@@ -67,14 +74,15 @@ article#homeBody {
     background-size: 12px 12px;
 }
 
-#homeBody select::after {
+.homeBody select::after {
     content: '\25BC';
     position: absolute;
     right: 15px;
     pointer-events: none;
+    /* background-color: red; */
 }
 
-#homeBody input{
+.homeBody input{
     position: relative;
     appearance: none;
     padding: 10px;
@@ -86,6 +94,28 @@ article#homeBody {
     font-size: 20px;
 }
 
+.homeBody input:active {
+    background-color: rgb(192, 192, 192);
+}
+
+.dashboardBody {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}
+
+.sideContent {
+    background-color: #D8D8D8;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#seasonRaceList {
+
+}
+
 /* For elements that want to increase in size when being hovered over */
 .increasing-hover {
     cursor: pointer;
@@ -94,4 +124,8 @@ article#homeBody {
 
 .increasing-hover:hover {
     scale: 110%;
+}
+
+.hidden {
+    display: none;
 }
