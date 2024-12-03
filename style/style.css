@@ -82,7 +82,7 @@ p.projectInfo {
     /* background-color: red; */
 }
 
-.homeBody input{
+.homeBody button{
     position: relative;
     appearance: none;
     padding: 10px;
@@ -94,7 +94,7 @@ p.projectInfo {
     font-size: 20px;
 }
 
-.homeBody input:active {
+.homeBody button:active {
     background-color: rgb(192, 192, 192);
 }
 
@@ -128,4 +128,10 @@ p.projectInfo {
 
 .hidden {
     display: none;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
