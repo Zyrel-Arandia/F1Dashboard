@@ -8,22 +8,31 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+* {
+    padding: 0;
+    margin: 0px;
 }
 
 #header {
     display: flex;
     flex-direction: row;
-    background-color: black;
+    background-color: white;
     justify-content: space-between;
-    height: 65px;
-    color: white;
+    /* height: 65px; */
+    color: black;
+    width: 100%;
+    /* margin: 15px 10px; */
+    /* border-radius: 30px; */
 }
 
 .projectInfo {
     display: flex;
     flex-direction: row;
-    width: 10%;
-    /* background-color: blue; */
+    width: 200px;
     justify-content: space-between;
     align-items: center;
     margin-right: 7%;
@@ -48,11 +57,13 @@ p.projectInfo {
     align-items: center;
     /* justify-content: center; */
     flex: 1;
+    background-color: white;
 }
 
 .homeBody h1 {
     margin-top: 250px;
     font-size: 90px;
+    color: black;
 }
 
 
@@ -79,7 +90,6 @@ p.projectInfo {
     position: absolute;
     right: 15px;
     pointer-events: none;
-    /* background-color: red; */
 }
 
 .homeBody button{
@@ -101,19 +111,69 @@ p.projectInfo {
 .dashboardBody {
     display: flex;
     flex-direction: row;
+    width: 100%;
     flex: 1;
+    overflow: scroll;
 }
 
 .sideContent {
-    background-color: #D8D8D8;
-    width: 30%;
+    background-color: #dae7ff;
+    width: 420px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: scroll;
 }
 
 #seasonRaceList {
+    width: 80%;
+}
 
+#seasonRaceList tr {
+    line-height: 1.75;
+    font-size: 19px;
+}
+
+#seasonRaceList button {
+    padding: 5px 13px;
+    background-color: white;
+    border: none;
+}
+#seasonRaceList button:hover {
+    padding: 5px 10px;
+    background-color: #d8d8d8;
+    border: none;
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    flex:1;
+}
+.raceHeader {
+    display: flex;
+    align-items: row;
+    background-color: red;
+    justify-content: space-between;
+}
+
+.raceInfo {
+    background-color: blue;
+    display: flex;
+    flex-direction: row;
+}
+
+.subInfo {
+    background-color: green;
+    display: flex;
+    flex-direction: column;
+    align-items:end;
+    padding-right: 10px;
+    font-size: ;
+}
+
+.subInfo h4 {
+    margin: 5px 0;
 }
 
 /* For elements that want to increase in size when being hovered over */
