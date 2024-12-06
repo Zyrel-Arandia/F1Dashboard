@@ -22,9 +22,10 @@ body {
     flex-direction: row;
     background-color: white;
     justify-content: space-between;
-    /* height: 65px; */
+    /* height: 56px; */
     color: black;
     width: 100%;
+    border-bottom: 2px solid black;
     /* margin: 15px 10px; */
     /* border-radius: 30px; */
 }
@@ -117,7 +118,8 @@ p.projectInfo {
 }
 
 .sideContent {
-    background-color: #dae7ff;
+    /* background-color: #dae7ff; */
+    border-right: 2px solid black;
     width: 420px;
     display: flex;
     flex-direction: column;
@@ -126,7 +128,7 @@ p.projectInfo {
 }
 
 #seasonRaceList {
-    width: 80%;
+    width: 85%;
 }
 
 #seasonRaceList tr {
@@ -137,30 +139,53 @@ p.projectInfo {
 #seasonRaceList button {
     padding: 5px 13px;
     background-color: white;
-    border: none;
+    border: 1px black solid;
 }
 #seasonRaceList button:hover {
-    padding: 5px 10px;
+    /* padding: 5px 10px; */
     background-color: #d8d8d8;
-    border: none;
+    cursor: pointer;
+    /* border: none; */
 }
 
 .mainContent {
     display: flex;
     flex-direction: column;
-    flex:1;
+    flex: 1;
+    overflow: scroll;
 }
 .raceHeader {
     display: flex;
     align-items: row;
-    background-color: red;
     justify-content: space-between;
+    padding: 10px 10px;
 }
 
 .raceInfo {
-    background-color: blue;
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
+    overflow: scroll;
+}
+
+#raceNameSubHeader {
+    font-size: 64px;
+}
+
+#circuitNameSubHeader {
+    font-size: 30px;
+}
+
+#qualifyingTable tr {
+    line-height: 1.90;
+}
+
+.textCentered {
+    text-align: center;
+}
+
+#nameColumn {
+    width: 30%;
 }
 
 .subInfo {
@@ -169,11 +194,57 @@ p.projectInfo {
     flex-direction: column;
     align-items:end;
     padding-right: 10px;
-    font-size: ;
+    font-size: 20px;
 }
 
 .subInfo h4 {
     margin: 5px 0;
+}
+
+#qualifyingContent {
+    flex: 1;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+}
+
+#qualifyingTable {
+    width: 90%;
+}
+
+#resultsContent {
+    /* background-color: green; */
+    flex: 1;
+    width: 50%;
+    overflow: scroll;
+    display: flex;
+    /* justify-content: center; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#topSpots {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#topSpots h2{
+    width: 250px;
+    border: 2px black solid;
+    padding: 10px;
+    margin: 2px 0;
+
+}
+
+#resultsTable {
+    /* background-color: red; */
+    width: 90%;
+}
+#resultsTable th {
+    /* background-color: red; */
 }
 
 /* For elements that want to increase in size when being hovered over */
@@ -194,4 +265,9 @@ p.projectInfo {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.darkenOnHover:hover {
+    background-color: #2727272a;
+    cursor: pointer;
 }

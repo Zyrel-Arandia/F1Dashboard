@@ -39,46 +39,92 @@
     <article class="homeBody">
         <h1>F1 DASHBOARD PROJECT</h1>
         <div class="seasonSelectBox">
-            <select id="yearSelectBar">
-                <option value="SelectSeason" disabled selected>Select Season</option>
-                <option value="2023">2023</option>
+            <select id="yearSelectBar" required>
+                <option value="" disabled selected>Select Season</option>
             </select>
             <button id="searchBtn">Search</button>
         </div>
     </article>
 
+    <!-- MAIN DASHBOARD SCREEN -->
     <article class="dashboardBody hidden">
+        <!-- Sidebar -->
         <div class="sideContent">
-            <h2>Filler</h2>
+            <h2>Races</h2>
             <table id="seasonRaceList">
+                <thead>
                 <tr>
                     <td>Round</td>
                     <td>Race</td>
                 </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
                 <!-- Insert JSON Data Here -->
             </table>
         </div>
+        <!-- Center/Main Content -->
         <div class="mainContent">
             <div class="raceHeader">
                 <div class="mainInfo"> <!-- Please redo class name-->
-                    <h2>Race</h2>
-                    <h3>Circuit name</h3>
+                    <h2 id="raceNameSubHeader">Race Name</h2>
+                    <h3 id="circuitNameSubHeader">Circuit name</h3>
                 </div>
                 <div class="subInfo">
-                    <h4>Round</h4>
-                    <h4>Date</h4>
-                    <h4>Wiki Link</h4>
+                    <h4 id="roundInfo">Round</h4>
+                    <h4 id="dateInfo">Date</h4>
+                    <h4 id="wikiLink">Wiki Page</h4>
                 </div>
 
             </div>
             <div class="raceInfo">
-                <div class="qualifyingContent">
+                <div id="qualifyingContent">
                     <h2>Qualifying</h2>
-                    <table></table>
+                    <table id="qualifyingTable">
+                        <thead>
+                            <tr>
+                                <td id="positionColumn" class="darkenOnHover textCentered">Position</td>
+                                <td id="nameColumn" class="darkenOnHover textCentered">Name</td>
+                                <td id="constructorColumn" class="darkenOnHover textCentered">Constructor</td>
+                                <td id="q1Column" class="quarterColumn darkenOnHover textCentered">Q1</td>
+                                <td id="q2Column" class="quarterColumn darkenOnHover textCentered">Q2</td>
+                                <td id="q3Column" class="quarterColumn darkenOnHover textCentered">Q3</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
                 </div>
-                <div class="resultsContent">
+                <div id="resultsContent">
                     <h2>Results</h2>
-                    <table></table>
+                    <div id="topSpots">
+                        <div id="firstPlace" class="topSpot">
+                            <h2>1 Something</h2>
+                        </div>
+                        <div id="secondPlace" class="topSpot">
+                            <h2>2 Woah</h2>
+                        </div>
+                        <div id="thirdPlace" class="topSpot">
+                            <h2>3 Awesome</h2>
+                        </div>
+                    </div>
+
+                    <table id="resultsTable">
+                        <thead>
+                            <tr>
+                                <th id="resultsPositionCell" class="darkenOnHover">Position</th>
+                                <th id="resultsNameCell" class="darkenOnHover">Name</th>
+                                <th id="resultsConstructorCell" class="darkenOnHover">Constructor</th>
+                                <th id="resultsLapsCell" class="darkenOnHover">Laps</th>
+                                <th id="resultsPointsCell" class="darkenOnHover">Points</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
