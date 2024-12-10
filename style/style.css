@@ -22,12 +22,42 @@ body {
     flex-direction: row;
     background-color: white;
     justify-content: space-between;
+    align-items: center;
     /* height: 56px; */
     color: black;
     width: 100%;
     border-bottom: 2px solid black;
     /* margin: 15px 10px; */
     /* border-radius: 30px; */
+}
+
+#aboutDialog {
+    position: fixed;
+    top: 57px;
+    left: 76%;
+    margin: 0;
+    padding: 20px;
+    border: 1px solid black;
+    border-top: none;
+    background-color: white;
+    width: 300px;
+}
+
+dialog::backdrop {
+    background-color: rgba(255, 255, 255, 0);
+}
+
+#closeBtn {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#textLogo {
+    margin: 0 10px;
+    font-size: 40px;
+    cursor: pointer;
+    padding: 5px;
 }
 
 .projectInfo {
@@ -45,24 +75,19 @@ p.projectInfo {
     padding: 10px;
 }
 
-.projectInfo dialog {
-    position: relative;
-    right: 10px;
-    top: 80px;
-    
-}
+
 
 .homeBody {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
+    justify-content: center;
     flex: 1;
     background-color: white;
+    overflow: scroll;
 }
 
 .homeBody h1 {
-    margin-top: 250px;
     font-size: 90px;
     color: black;
 }
@@ -93,7 +118,7 @@ p.projectInfo {
     pointer-events: none;
 }
 
-.homeBody button{
+.homeBody button {
     position: relative;
     appearance: none;
     padding: 10px;
@@ -141,6 +166,7 @@ p.projectInfo {
     background-color: white;
     border: 1px black solid;
 }
+
 #seasonRaceList button:hover {
     /* padding: 5px 10px; */
     background-color: #d8d8d8;
@@ -154,6 +180,7 @@ p.projectInfo {
     flex: 1;
     overflow: scroll;
 }
+
 .raceHeader {
     display: flex;
     align-items: row;
@@ -174,10 +201,31 @@ p.projectInfo {
 
 #circuitNameSubHeader {
     font-size: 30px;
+    width: fit-content;
+}
+
+.wikiPageBtn {
+    background: white;
+    border: 1px black solid;
+    cursor: pointer;
+    padding: 5px;
+    text-decoration: none;
+    color: black;
+    width: 60px;
+    text-align: center;
+}
+
+#wikiPageBtn:hover {
+    background-color: #d8d8d8;
+    /* cursor: pointer; */
 }
 
 #qualifyingTable tr {
     line-height: 1.90;
+}
+
+#qualifyingTable thead {
+    font-weight: 700;
 }
 
 .textCentered {
@@ -189,10 +237,9 @@ p.projectInfo {
 }
 
 .subInfo {
-    background-color: green;
     display: flex;
     flex-direction: column;
-    align-items:end;
+    align-items: end;
     padding-right: 10px;
     font-size: 20px;
 }
@@ -215,7 +262,6 @@ p.projectInfo {
 }
 
 #resultsContent {
-    /* background-color: green; */
     flex: 1;
     width: 50%;
     overflow: scroll;
@@ -225,13 +271,14 @@ p.projectInfo {
     flex-direction: column;
     align-items: center;
 }
+
 #topSpots {
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
 
-#topSpots h2{
+#topSpots h2 {
     width: 250px;
     border: 2px black solid;
     padding: 10px;
@@ -243,8 +290,164 @@ p.projectInfo {
     /* background-color: red; */
     width: 90%;
 }
+
 #resultsTable th {
     /* background-color: red; */
+}
+
+.centeredDialog {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px black solid;
+    width: 950px;
+    height: 500px;
+    flex-direction: row;
+    overflow: hidden;
+    /* display: flex; */
+
+}
+.closeButtonSpace {
+    width: 100%;
+    height: 30px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.placeholderImg {
+    width: 100;
+    height: 170px;
+}
+
+#circuitAbout {
+    width: 700px;
+    height: 300px;
+}
+
+#circuitName {
+    font-size: 25px;
+}
+
+#circuitAbout .profileDialog {
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+}
+
+#circuitInfo {
+    height: 100%;
+    flex: 1;
+    padding: 0 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#circuitLocation, #circuitCountry {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+#circuitWikiBtn {
+    position: relative;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 20%;
+}
+
+.profileDialog {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    height: 100%;
+}
+
+#constructorInfo {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 230px;
+    padding: 0 10px;
+    overflow: hidden;
+}
+
+.dialogCloseBtn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+
+}
+
+#driverName {
+    font-size: 50px;
+    font-weight: 800;
+}
+
+#driverBirth, #driverAge, #driverNationality{ 
+    font-size: 25px;
+    font-weight: 600;
+}
+
+
+.dialogMainContent {
+    display: flex;
+    flex-direction: row;
+    /* flex: 1; */
+    height: auto;
+}
+
+.titleName {
+    font-size: 50px;
+    font-weight: 800;
+}
+.profileInfo {
+    font-size: 48px;
+    font-weight: 800;
+}
+
+#constructorRaces, #driverRaces {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 30px 0;
+    overflow: scroll;
+}
+
+#constructorTable,#driverTable {
+    width: 80%;
+    text-align: center;
+    overflow: scroll;
+}
+
+#driverInfo {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 230px;
+    padding: 0 10px;
+    overflow: hidden;
+}
+
+#driverRaces {
+    display: flex;
+    width: 100%;
+}
+#constructorWikiBtn, #driverWikiBtn {
+    font-size: 22px;
+    width: 70px;
+    padding: 10px;
+    text-align: center;
+    position: absolute;
+    bottom: 50px;
+    left: 175px;
+    transform: translate(-50%, -50%);
 }
 
 /* For elements that want to increase in size when being hovered over */

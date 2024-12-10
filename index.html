@@ -19,12 +19,24 @@
 
 
     <div id="header"> <!-- Header used everywhere -->
-        <img src="" alt="Logo"> <!-- Using some sort of eventhandler to change the page into the home page. -->
+        <h2 id="textLogo">F1 DashBoard</h2>
+        <!-- Using some sort of eventhandler to change the page into the home page. -->
         <div class="projectInfo">
             <!-- When pressed, creates a dialouge prompt explaining the details of the project -->
-            <p class="projectInfo increasing-hover">About </p>
-            <dialog class="" close>Something</dialog>
-            <a id="" gitHubBtn href="https://github.com/Zyrel-Arandia/F1Dashboard">
+            <div>
+                <p id="aboutBtn" class="projectInfo increasing-hover">About </p>
+                <dialog id="aboutDialog">
+                    <div id="closeBtn" class="increasing-hover"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up">
+                            <polyline points="18 15 12 9 6 15"></polyline>
+                        </svg></div>
+                    <p>The F1 Dashboard is a project for the Web 2 course, created by Zyrel, to demonstrate JavaScript
+                        techniques, such as DOM manipulation and API fetching. It allows users to explore Formula 1
+                        seasons, view race results and qualifying details.</p>
+                </dialog>
+            </div>
+            <a id="" gitHubBtn href="https://github.com/Zyrel-Arandia/F1Dashboard" target="_blank">
                 <svg class="increasing-hover" xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                     viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" class="feather feather-github">
@@ -44,39 +56,41 @@
             </select>
             <button id="searchBtn">Search</button>
         </div>
+
     </article>
 
     <!-- MAIN DASHBOARD SCREEN -->
     <article class="dashboardBody hidden">
         <!-- Sidebar -->
         <div class="sideContent">
-            <h2>Races</h2>
+            <h2 id="raceListTitle">Races</h2>
             <table id="seasonRaceList">
                 <thead>
-                <tr>
-                    <td>Round</td>
-                    <td>Race</td>
-                </tr>
-            </thead>
-            <tbody>
+                    <tr>
+                        <td>Round</td>
+                        <td>Race</td>
+                    </tr>
+                </thead>
+                <tbody>
 
-            </tbody>
+                </tbody>
                 <!-- Insert JSON Data Here -->
             </table>
         </div>
         <!-- Center/Main Content -->
-        <div class="mainContent">
+        <div class="mainContent hidden">
             <div class="raceHeader">
                 <div class="mainInfo"> <!-- Please redo class name-->
                     <h2 id="raceNameSubHeader">Race Name</h2>
-                    <h3 id="circuitNameSubHeader">Circuit name</h3>
+                    <h3 id="circuitNameSubHeader" class="darkenOnHover">Circuit name</h3>
                 </div>
                 <div class="subInfo">
                     <h4 id="roundInfo">Round</h4>
                     <h4 id="dateInfo">Date</h4>
-                    <h4 id="wikiLink">Wiki Page</h4>
+                    <a id="wikiPageBtn" class="wikiPageBtn" target="_blank">
+                        <h4>Wiki Page</h4>
+                    </a>
                 </div>
-
             </div>
             <div class="raceInfo">
                 <div id="qualifyingContent">
@@ -84,12 +98,12 @@
                     <table id="qualifyingTable">
                         <thead>
                             <tr>
-                                <td id="positionColumn" class="darkenOnHover textCentered">Position</td>
-                                <td id="nameColumn" class="darkenOnHover textCentered">Name</td>
-                                <td id="constructorColumn" class="darkenOnHover textCentered">Constructor</td>
-                                <td id="q1Column" class="quarterColumn darkenOnHover textCentered">Q1</td>
-                                <td id="q2Column" class="quarterColumn darkenOnHover textCentered">Q2</td>
-                                <td id="q3Column" class="quarterColumn darkenOnHover textCentered">Q3</td>
+                                <th id="positionColumn" class="darkenOnHover textCentered">Position</th>
+                                <th id="nameColumn" class="darkenOnHover textCentered">Name</th>
+                                <th id="constructorColumn" class="darkenOnHover textCentered">Constructor</th>
+                                <th id="q1Column" class="quarterColumn darkenOnHover textCentered">Q1</th>
+                                <th id="q2Column" class="quarterColumn darkenOnHover textCentered">Q2</th>
+                                <th id="q3Column" class="quarterColumn darkenOnHover textCentered">Q3</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -100,14 +114,14 @@
                 <div id="resultsContent">
                     <h2>Results</h2>
                     <div id="topSpots">
-                        <div id="firstPlace" class="topSpot">
-                            <h2>1 Something</h2>
+                        <div class="topSpot">
+                            <h2 id="firstPlace"></h2>
                         </div>
-                        <div id="secondPlace" class="topSpot">
-                            <h2>2 Woah</h2>
+                        <div class="topSpot">
+                            <h2 id="secondPlace"></h2>
                         </div>
-                        <div id="thirdPlace" class="topSpot">
-                            <h2>3 Awesome</h2>
+                        <div class="topSpot">
+                            <h2 id="thirdPlace"></h2>
                         </div>
                     </div>
 
@@ -122,12 +136,99 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                            <!-- Results data here -->
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+
+        <dialog id="circuitAbout" class="centeredDialog">
+            <div class="profileDialog">
+                <svg id="circuitCloseBtn" class="dialogCloseBtn increasing-hover" xmlns="http://www.w3.org/2000/svg"
+                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+
+            <img src="./images/questionMarkFillIn.png" alt="./images/questionMarkFillIn.png" class="placeholderImg">
+            <div id="circuitInfo">
+                <div id="circuitName" class="titleName">Name</div>
+                <div id="circuitLocation">Location</div>
+                <div id="circuitCountry">Country</div>
+                <a href="" id="circuitWikiBtn" class="wikiPageBtn darkenOnHover" target="_blank">Wiki</a>
+            </div>
+            </div>
+        </dialog>
+        <dialog id="constructorAbout" class="centeredDialog">
+            <div class="profileDialog">
+                <svg id="constructorCloseBtn" class="dialogCloseBtn increasing-hover" xmlns="http://www.w3.org/2000/svg"
+                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+                <!-- <div class="dialogMainContent"> -->
+                <div id="constructorInfo">
+                    <div id="constructorName" class="titleName">Constructor Name</div>
+                    <div id="constructorNationality" class="profileInfo">Nationality</div>
+                    <a id="constructorWikiBtn" class="wikiPageBtn darkenOnHover" target="_blank">Wiki</a>
+                </div>
+                <div id="constructorRaces">
+                    <h2 id="constructorRaceResults">Race Results</h2>
+                    <table id="constructorTable">
+                        <thead>
+                            <tr>
+                                <th>Round</th>
+                                <th>Name</th>
+                                <th>Driver</th>
+                                <th>Position</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data Results here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </dialog>
+
+        <dialog id="driverAbout" class="centeredDialog">
+            <div class="profileDialog">
+            <svg id="driverCloseBtn" class="dialogCloseBtn increasing-hover" xmlns="http://www.w3.org/2000/svg"
+                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+            <div id="driverInfo">
+                <div id="driverName">Driver Name</div>
+                <div id="driverBirth" class="driverSubInfo">Date of Birth</div>
+                <div id="driverAge">Age</div>
+                <div id="driverNationality">Nationality</div>
+                <a id="driverWikiBtn"href="" class="wikiPageBtn darkenOnHover" target="_blank">Wiki Page</a>
+            </div>
+
+            <div id="driverRaces">
+                <h2 id="driverRaceResults">Year Race Results</h2>
+                <table id="driverTable">
+                    <thead>
+                        <tr>
+                            <td>Round</td>
+                            <td>Race Name</td>
+                            <td>Position</td>
+                            <td>Points</td>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        </dialog>
+        <dialog>
+            <!-- circuit -->
+        </dialog>
     </article>
 </body>
 
