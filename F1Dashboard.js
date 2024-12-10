@@ -9,7 +9,7 @@ async function fetchSeasonData(table, year) {
   const storageKey = table + year;
   // Collecting from local storage
   const seasonData = localStorage.getItem(storageKey);
-  console.log(`Checking for ` + table + ` local storage...`);
+  console.log(`Checking for ` + table + ` in local storage...`);
   if (seasonData) {
 
     console.log("Retrieved Data from Local Storage");
@@ -25,8 +25,6 @@ async function fetchSeasonData(table, year) {
     const jsonData = await response.json();
     localStorage.setItem(storageKey, JSON.stringify(jsonData));
     console.log("Retrived Data from API");
-    // console.log(jsonData);
-    //Hide loading bar code here
     return jsonData;
   } catch (error) {
     console.error("Error: ", error);
@@ -35,7 +33,7 @@ async function fetchSeasonData(table, year) {
 }
 
 
-//Populates table specific to the side column of the dashboard page 
+// Populates table specific to the side column of the dashboard page 
 async function populateRaceTable(year) {
   const raceData = await fetchSeasonData("races", year);
   const raceListTitle = document.getElementById("raceListTitle");
@@ -66,16 +64,14 @@ async function populateRaceTable(year) {
       tableRow.appendChild(buttonCell);
 
       const mainContent = document.querySelector(".mainContent");
-      //Event listener for button
-      //Loads content in the main section of the screen
+      // Event listener for button
+      // Loads content in the main section of the screen
       raceListButton.addEventListener("click", (e) => {
         currentRaceButton = e.target;
-        console.log((e.target));
         populateHeader(e.target);
         populateQualifyingTable(e.target, "position");
         populateResultsTable(e.target, "position");
         mainContent.classList.remove("hidden");
-        // console.log(mainContent);
       })
 
       raceTable.querySelector("tbody").appendChild(tableRow);
@@ -86,34 +82,33 @@ async function populateRaceTable(year) {
 // Fills in the header in the mainContent div 
 // Race, circuit name, round, date, wiki link 
 async function populateHeader(button) {
-  console.log(button);
-  //Obtaining specified race through race id from button dataset
+  // Obtaining specified race through race id from button dataset
   const raceId = button.dataset.id;
   const raceData = await fetchSeasonData("races", button.dataset.year);
 
   const raceInfo = raceData.find(p => p.id == raceId);
-  //Adding info to the html
+  // Adding info to the html
 
-  //Race Name
+  // Race Name
   const raceNameSubHeader = document.getElementById("raceNameSubHeader");
   raceNameSubHeader.textContent = raceInfo.name;
 
-  //Circuit
+  // Circuit
   const circuitSubHeader = document.getElementById("circuitNameSubHeader");
   circuitSubHeader.textContent = raceInfo.circuit.name;
 
   createCircuitEventListener(circuitSubHeader, raceInfo.circuit);
 
-  //Round
+  // Round
   const roundInfo = document.getElementById("roundInfo");
   roundInfo.textContent = `Round ` + raceInfo.round;
 
-  //date
+  // date
   const dateInfo = document.getElementById("dateInfo");
   dateInfo.textContent = raceInfo.date;
 
 
-  //Wiki link
+  // Wiki link
   const wikiPageBtn = document.getElementById("wikiPageBtn");
   wikiPageBtn.href = raceInfo.url;
 }
@@ -124,12 +119,12 @@ async function populateHeader(button) {
 // (Accepts "position", "driver", "constructor", "q1", "q2", and "q3")
 async function populateQualifyingTable(button, sortCategory) {
 
-  //Empties table 
+  // Empties table 
   emptyTable(qualifyingTable);
-  //List of all qualifying racers within a year
+  // List of all qualifying racers within a year
   const qualifyingData = await fetchSeasonData("qualifying", button.dataset.year);
 
-  //List of qualifying racers of a specific race 
+  // List of qualifying racers of a specific race 
   let qualifyingInfo = qualifyingData.filter((qualifier) => qualifier.race.id == button.dataset.id);
 
   // Changes sorting criteria based on sortCategory
@@ -162,17 +157,17 @@ async function populateQualifyingTable(button, sortCategory) {
       });
     }
   }
-  //Creates table rows for qualifying tables 
+  // Creates table rows for qualifying tables 
   qualifyingInfo.forEach((qualifier) => {
     const tableRow = document.createElement("tr");
 
-    //Position cell
+    // Position cell
     const positionCell = document.createElement("td");
     positionCell.textContent = qualifier.position;
     positionCell.classList.add("textCentered");
     tableRow.appendChild(positionCell);
 
-    //Name cell
+    // Name cell
     const nameCell = document.createElement("td");
     nameCell.textContent = qualifier.driver.forename + ` ` + qualifier.driver.surname;
     nameCell.classList.add("darkenOnHover");
@@ -180,46 +175,46 @@ async function populateQualifyingTable(button, sortCategory) {
 
     tableRow.appendChild(nameCell);
 
-    //Constructor cell
+    // Constructor cell
     const constructorCell = document.createElement("td");
     constructorCell.textContent = qualifier.constructor.name;
     constructorCell.classList.add("darkenOnHover");
     tableRow.appendChild(constructorCell);
     createConstructorEventListener(constructorCell, qualifier.constructor, button.dataset.year);
 
-    //Q1 cell
+    // Q1 cell
     const Q1Cell = document.createElement("td");
     Q1Cell.textContent = qualifier.q1;
     Q1Cell.classList.add("textCentered");
     tableRow.appendChild(Q1Cell);
 
-    //Q2 cell
+    // Q2 cell
     const Q2Cell = document.createElement("td");
     Q2Cell.textContent = qualifier.q2;
     Q2Cell.classList.add("textCentered");
 
     tableRow.appendChild(Q2Cell);
 
-    //Q3 cell
+    // Q3 cell
     const Q3Cell = document.createElement("td");
     Q3Cell.textContent = qualifier.q3;
     Q3Cell.classList.add("textCentered");
     tableRow.appendChild(Q3Cell);
 
-    //Inserts all table row full of table data into the table body 
+    // Inserts all table row full of table data into the table body 
     const qualifyingTableBody = qualifyingTable.querySelector("tbody");
     qualifyingTableBody.appendChild(tableRow);
   })
 
-  //Creates event listeners for the column headers 
+  // Creates event listeners for the column headers 
   if (!columnListenersSet) {
     setupQualifyingColumnSorting();
-    columnListenersSet = true; //Confirms columns lisenters have been set 
+    columnListenersSet = true; // Confirms columns lisenters have been set 
   }
 
 }
 
-//Creates event listeners for columns headers for Results table 
+// Creates event listeners for columns headers for Results table 
 function setupResultsColumnSorting() {
   const columns = [
     { id: "resultsPositionCell", sortCategory: "position" },
@@ -244,6 +239,7 @@ function setupResultsColumnSorting() {
   });
 }
 
+// Creates Event Listener on elements with a driver's name in order to open their dialog profile
 function createDriverEventListener(driverElement, driverInfo, year) {
   driverElement.addEventListener("click", (event) =>{
     const driverDialog = document.getElementById("driverAbout");
@@ -252,6 +248,7 @@ function createDriverEventListener(driverElement, driverInfo, year) {
   })
 }
 
+// Creates Event Listener on elements with a constructor's name in order to open their dialog profile
 function createConstructorEventListener(constructorElement, constructorInfo, year) {
   constructorElement.addEventListener("click", (event) => {
     const constructorDialog = document.getElementById("constructorAbout");
@@ -262,17 +259,17 @@ function createConstructorEventListener(constructorElement, constructorInfo, yea
   })
 }
 
+// Creates Event Listener on elements with a circuit's name in order to open their dialog profile
 async function createCircuitEventListener(circuitElement, circuitInfo) {
   circuitElement.addEventListener("click", (event) => {
     const circuitDialog = document.getElementById("circuitAbout");
     circuitDialog.showModal();
     populateCircuitDialog(circuitInfo);
-    console.log(circuitInfo);
   })
 }
 
+// Adds information regarding a specified circuit to a dialog element 
 async function populateCircuitDialog(circuitInfo) {
-
   const circuitName = document.getElementById("circuitName");
   circuitName.textContent = circuitInfo.name;
 
@@ -292,33 +289,7 @@ async function populateCircuitDialog(circuitInfo) {
     console.log("Circuit dialog closed.");
   });
 }
-
-function setupQualifyingColumnSorting() {
-  const columns = [
-    { id: "positionColumn", sortCategory: "position" },
-    { id: "nameColumn", sortCategory: "driver" },
-    { id: "constructorColumn", sortCategory: "constructor" },
-    { id: "q1Column", sortCategory: "q1" },
-    { id: "q2Column", sortCategory: "q2" },
-    { id: "q3Column", sortCategory: "q3" },
-  ];
-
-  columns.forEach(({ id, sortCategory }) => {
-    const columnElement = document.getElementById(id);
-    columnElement.replaceWith(columnElement.cloneNode(true)); // Remove old listeners
-    const newColumnElement = document.getElementById(id);
-
-    newColumnElement.addEventListener("click", () => {
-      if (currentRaceButton) {
-        populateQualifyingTable(currentRaceButton, sortCategory); // Use the global variable
-      } else {
-        console.error("No race selected. Cannot sort.");
-      }
-    });
-  });
-}
-
-
+// Populates the results table with race-specific data
 async function populateResultsTable(button, sortCategory) {
   // Reference the table and clear existing rows
   const resultsTable = document.getElementById("resultsTable");
@@ -329,7 +300,7 @@ async function populateResultsTable(button, sortCategory) {
   const raceId = button.dataset.id;
   const resultsData = await fetchSeasonData("results", button.dataset.year);
   
-  //Filter data to a specific race 
+  // Filter data to a specific race 
   let resultsInfo = resultsData.filter((result) => result.race.id == button.dataset.id);
   const firstPlace = document.getElementById("firstPlace");
   const secondPlace = document.getElementById("secondPlace");
@@ -364,6 +335,7 @@ async function populateResultsTable(button, sortCategory) {
     const nameCell = document.createElement("td");
     nameCell.textContent = `${result.driver.forename} ${result.driver.surname}`;
     nameCell.classList = "darkenOnHover";
+    createDriverEventListener(nameCell, result.driver, button.dataset.year);
     
     tableRow.appendChild(nameCell);
 
@@ -389,87 +361,40 @@ async function populateResultsTable(button, sortCategory) {
   setupResultsColumnSorting(button);
 }
 
-function createAboutListener() {
-  const aboutBtn = document.getElementById("aboutBtn");
-  const aboutDialog = document.getElementById("aboutDialog");
-  const closeAbout = document.getElementById("closeBtn");
-  console.log("initiated");
-  aboutBtn.addEventListener("click", () => {
-    console.log("click");
 
-    aboutDialog.showModal(); // Open the dialog in modal mode
-  })
-
-  closeAbout.addEventListener("click", () => {
-    aboutDialog.close(); // Close the dialog if it's already open
-  })
-}
-
-function closeConstructorDialogListener() {
-  const closeButton = document.getElementById("constructorCloseBtn");
-  const constructorDialog = document.getElementById("constructorAbout");
-
-  if (closeButton && constructorDialog) {
-    closeButton.addEventListener("click", () => {
-      constructorDialog.close(); // Closes the dialog
-      console.log("Constructor dialog closed.");
-    });
-  } else {
-    console.error("Constructor close button or dialog not found.");
-  }
-}
-
-// Helper function to get the value for sorting and leaves empty space if no value
-function getValueForSort(result, sortCategory) {
-  switch (sortCategory) {
-    case "position":
-      return result.position || "";
-    case "driver":
-      return `${result.driver.forename} ${result.driver.surname}` || "";
-    case "constructor":
-      return result.constructor.name || "";
-    case "laps":
-      return result.laps || "";
-    case "points":
-      return result.points || "";
-    default:
-      return "";
-  }
-}
-
+// Populates the constructor dialog with constructor-specific data
 async function populateConstructorDialog(constructorInfo, year) {
   const constructorTableBody = document.querySelector("#constructorTable tbody");
-  const constructorRaceApiUrl = `https://www.randyconnolly.com/funwebdev/3rd/api/f1//constructorResults.php?constructor=${constructorInfo.ref}&season=${year}`;
+  const constructorRaceApiUrl = `https://www.randyconnolly.com/funwebdev/3rd/api/f1/constructorResults.php?constructor=${constructorInfo.ref}&season=${year}`;
   const constructorRaceResponse = await fetch(constructorRaceApiUrl);
   const constructorRaceData = await constructorRaceResponse.json();
   if (constructorRaceData) {
     console.log("Retrieved from API ");
   } else {
-    console.log("aw man");
+    console.log("Could not retrieve constructor race data.");
   }
 
-  //Had to call for constructor due to constructor objects from qualifying and results not have url attribute 
+  // Had to call for constructor due to constructor objects from qualifying and results not have url attribute 
   const constructorInfoApiUrl = `https://www.randyconnolly.com/funwebdev/3rd/api/f1/constructors.php?id=${constructorInfo.id}`;
   const constructorInfoResponse = await fetch(constructorInfoApiUrl);
   const constructorInfoData = await constructorInfoResponse.json();
   
-  //Constructor Name 
+  // Constructor Name 
   const constructorName = document.getElementById("constructorName");
   constructorName.textContent = constructorInfo.name;
-  console.log(constructorInfo.name)
 
-  //Constructor Nationality 
+  // Constructor Nationality 
   const constructorNationality = document.getElementById("constructorNationality");
   constructorNationality.textContent = constructorInfo.nationality;
 
-  //Constructor Wiki Button
+  // Constructor Wiki Button
   const constructorWikiBtn = document.getElementById("constructorWikiBtn");
   constructorWikiBtn.href = constructorInfoData.url;
   
   const constructorRaceTitle = document.getElementById("constructorRaceResults");
   constructorRaceTitle.textContent = `${year} Race Results`;
 
-  //Creating Constractor Race table
+  // Creating Constractor Race table
   constructorRaceData.forEach((constructorRace) => {
     const row = document.createElement("tr");
 
@@ -507,18 +432,90 @@ async function populateConstructorDialog(constructorInfo, year) {
   });
 }
 
+// Creates event listeners for about dialog
+function createAboutListener() {
+  const aboutBtn = document.getElementById("aboutBtn");
+  const aboutDialog = document.getElementById("aboutDialog");
+  const closeAbout = document.getElementById("closeBtn");
+  console.log("initiated");
+  aboutBtn.addEventListener("click", () => {
+    aboutDialog.showModal(); // Open the dialog in modal mode
+  })
+
+  closeAbout.addEventListener("click", () => {
+    aboutDialog.close(); // Close the dialog if it's already open
+  })
+}
+// Closes the constructor dialog
+function closeConstructorDialogListener() {
+  const closeButton = document.getElementById("constructorCloseBtn");
+  const constructorDialog = document.getElementById("constructorAbout");
+
+  if (closeButton && constructorDialog) {
+    closeButton.addEventListener("click", () => {
+      constructorDialog.close(); // Closes the dialog
+      console.log("Constructor dialog closed.");
+    });
+  } else {
+    console.error("Constructor close button or dialog not found.");
+  }
+}
+
+// Sets up sorting for qualifying table columns
+function setupQualifyingColumnSorting() {
+  const columns = [
+    { id: "positionColumn", sortCategory: "position" },
+    { id: "nameColumn", sortCategory: "driver" },
+    { id: "constructorColumn", sortCategory: "constructor" },
+    { id: "q1Column", sortCategory: "q1" },
+    { id: "q2Column", sortCategory: "q2" },
+    { id: "q3Column", sortCategory: "q3" },
+  ];
+
+  columns.forEach(({ id, sortCategory }) => {
+    const columnElement = document.getElementById(id);
+    columnElement.replaceWith(columnElement.cloneNode(true)); // Remove old listeners
+    const newColumnElement = document.getElementById(id);
+
+    newColumnElement.addEventListener("click", () => {
+      if (currentRaceButton) {
+        populateQualifyingTable(currentRaceButton, sortCategory); // Use the global variable
+      } else {
+        console.error("No race selected. Cannot sort.");
+      }
+    });
+  });
+}
+
+// Helper function to get the value for sorting and leaves empty space if no value
+function getValueForSort(result, sortCategory) {
+  switch (sortCategory) {
+    case "position":
+      return result.position || "";
+    case "driver":
+      return `${result.driver.forename} ${result.driver.surname}` || "";
+    case "constructor":
+      return result.constructor.name || "";
+    case "laps":
+      return result.laps || "";
+    case "points":
+      return result.points || "";
+    default:
+      return "";
+  }
+}
+
+// Handles logo click to return to the home page
 function homeLogoListener() {
   const textLogo = document.getElementById("textLogo");
   const homeBody = document.querySelector(".homeBody");
-  const dashboardBody = document.querySelector(".dashboardBody"); //Dashboard screen 
+  const dashboardBody = document.querySelector(".dashboardBody"); // Dashboard screen 
   const raceTable = document.getElementById("seasonRaceList");
   const qualifyingTable = document.getElementById("qualifyingTable");
   const resultsTable = document.getElementById("resultsTable");
   const mainContent = document.querySelector(".mainContent");
 
-  console.log(textLogo);
   textLogo.addEventListener("click", (e) => {
-    console.log("click");
     homeBody.classList = "homeBody"
     dashboardBody.classList.add("hidden");
     mainContent.classList.add("hidden");''
@@ -528,12 +525,14 @@ function homeLogoListener() {
   })
 }
 
+// Populates the driver dialog with driver-specific data
 async function populateDriverDialog(driverInfo, year) {
   const driverTableBody = document.querySelector("#driverTable tbody");
 
   const driverRaceApiUrl = `https://www.randyconnolly.com/funwebdev/3rd/api/f1/driverResults.php?driver=${driverInfo.ref}&season=${year}`;
   const driverInfoApiUrl = `https://www.randyconnolly.com/funwebdev/3rd/api/f1/drivers.php?id=${driverInfo.id}`;
   const raceResultsList = await fetchSeasonData("results", year);
+
   // Fetch driver race results
   const driverRaceResponse = await fetch(driverRaceApiUrl);
   const driverRaceData = await driverRaceResponse.json();
@@ -546,19 +545,19 @@ async function populateDriverDialog(driverInfo, year) {
   const driverName = document.getElementById("driverName");
   driverName.textContent = `${driverDetails.forename} ${driverDetails.surname}`;
 
-  //Driver Date of Birth
+  // Driver Date of Birth
   const driverBirth = document.getElementById("driverBirth");
   driverBirth.textContent = driverDetails.dob;
   
-  //Driver Age
+  // Driver Age
   const driverAge = document.getElementById("driverAge");
   driverAge.textContent = `Age: ${calculateAge(driverDetails.dob)}`;
 
-  //Driver Nationality
+  // Driver Nationality
   const driverNationality = document.getElementById("driverNationality");
   driverNationality.textContent = driverDetails.nationality;
 
-  //Driver Wiki Button
+  // Driver Wiki Button
   const driverWikiBtn = document.getElementById("driverWikiBtn");
   driverWikiBtn.href = driverDetails.url;
 
@@ -598,10 +597,11 @@ async function populateDriverDialog(driverInfo, year) {
   const driverDialog = document.getElementById("driverAbout");
   closeButton.addEventListener("click", () => {
     driverDialog.close(); // Closes the dialog
-    console.log("Constructor dialog closed.");
+    console.log("Driver dialog closed.");
     driverTableBody.innerHTML = "";
   });
 }
+// Calculates age from date of birth
 function calculateAge(dob) {
   // Parse the date of birth
   const birthDate = new Date(dob);
@@ -610,19 +610,16 @@ function calculateAge(dob) {
   // Calculate age
   let age = today.getFullYear() - birthDate.getFullYear();
 
-
   return age;
 }
 
-// Example Usage
-const dob = "1990-01-26";
-console.log(`Age: ${calculateAge(dob)} years`);
-
+// Clears the contents of a given table
 function emptyTable(tableElement) {
   const tableBody = tableElement.querySelector("tbody");
   tableBody.innerHTML = '';
 }
 
+// Populates the year select dropdown
 function fillSelectOptions() {
 
   const startYear = 2023;
@@ -635,15 +632,16 @@ function fillSelectOptions() {
   }
 }
 
+// Initializes event listeners and elements on page load
 document.addEventListener("DOMContentLoaded", () => {
   createAboutListener();
   fillSelectOptions()
   homeLogoListener()
   // Element of Home Page
   const homeBody = document.querySelector(".homeBody");
-  const searchBtn = document.getElementById("searchBtn"); //Home Search button
-  const yearSelectBar = document.getElementById("yearSelectBar"); //Home Select list of years
-  const dashboardBody = document.querySelector(".dashboardBody"); //Dashboard screen 
+  const searchBtn = document.getElementById("searchBtn"); // Home Search button
+  const yearSelectBar = document.getElementById("yearSelectBar"); // Home Select list of years
+  const dashboardBody = document.querySelector(".dashboardBody"); // Dashboard screen 
   searchBtn.addEventListener("click", () => {
     homeBody.classList.toggle("hidden");
 
